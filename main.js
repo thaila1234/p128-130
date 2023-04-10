@@ -4,7 +4,8 @@ var rwy = 0;
 var rwx = 0;
 var lwy = 0;
 var lwx = 0;
-var song1status, song2status = " ";
+var song1status = " ";
+var song2status = " ";
 var scoreLeftWrist = 0;
 var scoreRightWrist = 0;
 
@@ -31,7 +32,7 @@ function draw(){
     if (scoreRightWrist > 0.2){
         circle(rwx, rwy, 25);
         song2.stop();
-        if (song1status = false){
+        if (song1status == false){
             song1.play();
             document.getElementById("songName").innerHTML = "Evidências está tocando."
         }
@@ -39,7 +40,7 @@ function draw(){
     if (scoreLeftWrist > 0.2){
         circle(rwx, rwy, 25);
         song1.stop();
-        if (song2status = false){
+        if (song2status == false){
             song2.play();
             document.getElementById("songName").innerHTML = "Gimme! Gimme! Gimme! está tocando."
         }
@@ -51,14 +52,14 @@ function modelLoaded(){
 }
 
 function gotPoses(results){
-    if (results.lenght > 0){
+    if (results.length > 0){
         scoreLeftWrist = results[0].pose.keypoints[9].score;
         scoreRightWrist = results[0].pose.keypoints[10].score;
         rwx = results[0].pose.rightWrist.x;
         rwy = results[0].pose.rightWrist.y;
         lwx = results[0].pose.leftWrist.x;
         lwy = results[0].pose.leftWrist.y;
-        console.log("pulso x: "+pex+" pulso y: "+pey);
+        console.log("pulso x: "+lwx+" pulso y: "+lwy);
     }
 }
 
